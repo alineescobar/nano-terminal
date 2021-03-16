@@ -7,5 +7,18 @@
 
 import Foundation
 
-print("hello")
+let palavra: String  = "casa"
+
+if let input = readLine() {
+    
+    let jogador01 = Player(name: input)
+        
+    print(jogador01.name)
+    
+    let game = Game(player: jogador01, wordsOptions: ["casa", "fogao"])
+    
+    print(game.player.name)
+}
+//-------------------------
+
 
