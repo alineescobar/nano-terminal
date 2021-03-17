@@ -20,7 +20,7 @@ class Game {
 
         if let letter = readLine(){
             if let valideLetter = letter.first{
-                return valideLetter
+                return String(valideLetter)
             }
         }
     }
