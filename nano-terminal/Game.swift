@@ -16,31 +16,25 @@ class Game {
         self.wordsOptions = wordsOptions
     }
     
-    func validateInput() -> String {
+    func validateInput(letter:String) -> Bool{
 
-        if let letter = readLine(){
-            if let valideLetter = letter.first{
-                return String(valideLetter)
-            }
+        if letter.count == 1 && letter >= "a" && letter <= "Z"{
+            return true
         }
+        return false
     }
-
-    func validateAlphabet() {
-        let pattern = "[a-z]"
-
-        let results = letter.range(of: pattern, options:.regularExpression)
-
-    }
-    
     
     func checkMatchLetters() -> Bool {
         
         var usedLetters: [String] = []
         var containsLetter: Bool = false
                 
-        print("Escolha uma letra de A à Z:")
+        print("Digite uma letra de A à Z:")
         
         if let letter = readLine() {
+            if validateInput(letter: letter) == false {
+                return false
+            }
             
             usedLetters.append(letter)
             print("letras usadas:")
@@ -49,7 +43,7 @@ class Game {
                 print(letter)
             }
             
-            if wordsOptions[0].contains(letter){
+            if wordsOptions[0].contains(letter) {
 
                 print("Você acertou")
                 containsLetter = true

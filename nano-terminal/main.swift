@@ -17,7 +17,7 @@ if let input = readLine() {
     
     let game = Game(player: jogador01, wordsOptions: ["casa", "fogao"])
     
-    game.validateInput()
+    //game.validateInput()
     game.checkMatchLetters()
 }
 //-------------------------
