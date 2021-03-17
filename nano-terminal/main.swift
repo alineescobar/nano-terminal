@@ -13,11 +13,12 @@ if let input = readLine() {
     
     let jogador01 = Player(name: input)
         
-    print(jogador01.name)
+    print("Olá, \(jogador01.name) o jogo vai começar!")
     
     let game = Game(player: jogador01, wordsOptions: ["casa", "fogao"])
     
-    print(game.player.name)
+    game.validateInput()
+    game.checkMatchLetters()
 }
 //-------------------------
 
