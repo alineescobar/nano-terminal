@@ -11,13 +11,13 @@ print("Insira o nome do jogador: ")
 
 if let input = readLine() {
     
-    let jogador01 = Player(name: input)
+    let jogador = Player(name: input)
         
-    print("Olá, \(jogador01.name) o jogo vai começar!")
+    print("Olá, \(jogador.name) o jogo vai começar!")
     
-    let game = Game(player: jogador01, wordsOptions: ["casa", "fogao"])
+    let game = Game(player: jogador, wordsOptions: ["casa", "fogao"])
     
-    game.checkMatchLetters()
+    game.playTheGame()
 }
 //-------------------------
 

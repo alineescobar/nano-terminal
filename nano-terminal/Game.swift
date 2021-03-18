@@ -18,6 +18,7 @@ class Game {
     
     func returnValidInput() -> String{
         var validInput: String = ""
+        
         if let input = readLine() {
             
             let letter = input.lowercased()
@@ -39,57 +40,51 @@ class Game {
         return wordSplited
     }
     
-    func showInitialGame() -> String {
+    func showInitialGame() {
         let splitedWord = splitWord()
         print("Olá! Sua palavra contém \(splitedWord.count) letras!")
         let draw = String(repeating: " _ ", count: splitedWord.count)
-        return draw
+        print(draw)
     }
     
-    func checkMatchLetters() {
+    func playTheGame() {
+        let _ = showInitialGame()
         var usedLetters: [String] = []
         let choosenWord = wordsOptions[0]
         var errors: Int = 0
+        let splitedWord = splitWord()
+        var palavraExibida: [String] = splitedWord
+        var teste: [String] = ["*", "*", "*", "*"]
+        var stillPlaying: Bool = true
         
         print("Escolha uma letra de A à Z:")
         
-        let letter = returnValidInput()
-        print("letter: ", letter)
-        
-        usedLetters.append(letter)
-        print("Guesses: ")
-        
-        for ul in usedLetters {
-            print(ul)
-        }
-        
-        if choosenWord.contains(letter) {
-            let splitedWord = splitWord()
-            var palavraExibida: [String] = splitedWord
+        while errors < 5 && stillPlaying {
+
+            let letter = returnValidInput()
+            usedLetters.append(letter)
+            print(usedLetters)
             
-            for i in 0...splitedWord.count-1 {
-                if splitedWord[i] == letter {
-                    palavraExibida[i] = letter
-                } else {
-                    palavraExibida[i] = "*"
+            if choosenWord.contains(letter) {
+                
+                for i in 0...splitedWord.count-1 {
+                    if splitedWord[i] == letter {
+                        teste[i] = letter
+                    }
                 }
+                
+                if teste == palavraExibida {
+                    stillPlaying = false
+                }
+                
+                print("Atualmente:", teste)
+                
+                print("Você acertou")
+                
+            } else {
+                print("Você errou. Está letra não está dentro da palavra.")
+                errors += 1
             }
-            
-            if palavraExibida.contains("*") {
-                print("ainda falta adivinhar alguma letra")
-            }
-            else{
-                print("voce venceu!!!")
-            }
-            
-            print("Atualmente:", palavraExibida)
-            
-            print("Você acertou")
-            
-        }else {
-            print("Você errou. Está letra não está dentro da palavra.")
-            errors += 1
         }
-        print(errors)
     }
 }
