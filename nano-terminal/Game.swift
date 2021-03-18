@@ -36,10 +36,10 @@ class Game {
             return ""
             
         }else {
-            var word = wordsOptions.randomElement()
-            var indexWord = wordsOptions.firstIndex(of: word!)
+            let word = wordsOptions.randomElement()
+            let indexWord = wordsOptions.firstIndex(of: word!)
             wordsOptions.remove(at: Int(indexWord!))
-            return word!
+            return word ?? ""
         }
     }
     
