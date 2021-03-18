@@ -56,19 +56,17 @@ class Game {
     
     func playTheGame() {
         var usedLetters: [String] = []
-        let choosenWord = sortWord()
         var errors: Int = 0
         let splitedWord = splitWord()
-        var palavraExibida: [String] = splitedWord
         var stillPlaying: Bool = true
-        var teste: [String] = []
+        var shownWord: [String] = []
         
         print("Olá! Sua palavra contém \(splitedWord.count) letras!")
         let draw = String(repeating: " _ ", count: splitedWord.count)
         print(draw)
         
-        for i in 0...splitedWord.count-1 {
-            teste.append("*")
+        for _ in 0...splitedWord.count-1 {
+            shownWord.append("*")
         }
         
         print("Escolha uma letra de A à Z:")
@@ -79,19 +77,18 @@ class Game {
             usedLetters.append(letter)
             print(usedLetters)
             
-            if choosenWord.contains(letter) {
-                
+            if splitedWord.contains(letter) {
                 for i in 0...splitedWord.count-1 {
                     if splitedWord[i] == letter {
-                        teste[i] = letter
+                        shownWord[i] = letter
                     }
                 }
                 
-                if teste == palavraExibida {
+                if shownWord == splitedWord {
                     stillPlaying = false
                 }
                 
-                print("Atualmente:", teste)
+                print("Atualmente:", shownWord)
                 
                 print("Você acertou")
                 
