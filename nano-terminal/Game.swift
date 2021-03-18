@@ -80,30 +80,29 @@ class Game {
             } else {
                 usedLetters.append(letter)
                 print(usedLetters)
-            }
-
-            
-            if splitedWord.contains(letter) {
-                for i in 0...splitedWord.count-1 {
-                    if splitedWord[i] == letter {
-                        shownWord[i] = letter
+                
+                if splitedWord.contains(letter) {
+                    for i in 0...splitedWord.count-1 {
+                        if splitedWord[i] == letter {
+                            shownWord[i] = letter
+                        }
                     }
-                }
-                
-                if shownWord == splitedWord {
-                    print("vitoria")
-                    stillPlaying = false
+                    
+                    if shownWord == splitedWord {
+                        print("vitoria")
+                        stillPlaying = false
+                    } else {
+                        print("Atualmente:", shownWord)
+                        print("Você acertou uma letra!")
+                        print("Escolha uma letra de A à Z:")
+                    }
+                    
                 } else {
+                    print("Você errou. Está letra não está dentro da palavra.")
                     print("Atualmente:", shownWord)
-                    print("Você acertou")
                     print("Escolha uma letra de A à Z:")
-                }                
-                
-            } else {
-                print("Você errou. Está letra não está dentro da palavra.")
-                print("Atualmente:", shownWord)
-                print("Escolha uma letra de A à Z:")
-                errors += 1
+                    errors += 1
+                }
             }
         }
     }
