@@ -73,8 +73,15 @@ class Game {
         while errors < 5 && stillPlaying {
 
             let letter = returnValidInput()
-            usedLetters.append(letter)
-            print(usedLetters)
+            
+            if usedLetters.contains(letter){
+                print("essa letra ja foi usada")
+                print("Escolha uma letra de A à Z:")
+            } else {
+                usedLetters.append(letter)
+                print(usedLetters)
+            }
+
             
             if splitedWord.contains(letter) {
                 for i in 0...splitedWord.count-1 {
