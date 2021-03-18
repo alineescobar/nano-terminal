@@ -7,17 +7,18 @@
 
 import Foundation
 
-print("Insira o nome do jogador: ")
+print("🐶 Olá! Qual o seu nome?")
 
 if let input = readLine() {
     
     let jogador = Player(name: input)
-        
-    print("Olá, \(jogador.name) o jogo vai começar!")
     
-    let game = Game(player: jogador, wordsOptions: ["fogao", "geladeira", "banana", "casa"])
+    print("")
+    print("\(jogador.name), digite:")
+    
+    let game = Game(player: jogador, wordsOptions: ["fogao", "familia", "banana", "casa", "amigo"])
 
-    game.playTheGame()
+    game.menuInicial()
 }
 //-------------------------
 

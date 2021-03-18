@@ -16,6 +16,24 @@ class Game {
         self.wordsOptions = wordsOptions
     }
     
+    func menuInicial() {
+        print("1: Novo Jogo")
+        print("0: Sair do Jogo")
+        
+        if let option = readLine() {
+            if option == "1"{
+                playTheGame()
+                
+            } else if option == "0" {
+                print("Até a próxima!😉")
+                exit(0)
+                
+            }else {
+                menuInicial()
+            }
+        }
+    }
+    
     func returnValidInput() -> String{
         var validInput: String = ""
         
@@ -38,9 +56,13 @@ class Game {
             
         }else {
             let word = wordsOptions.randomElement()
-            let indexWord = wordsOptions.firstIndex(of: word!)
-            wordsOptions.remove(at: Int(indexWord!))
-            return word ?? ""
+            guard let wordString = word else { return "" }
+            
+            let indexWord = wordsOptions.firstIndex(of: wordString)
+            guard let firstIndexWord = indexWord else { return "" }
+
+            wordsOptions.remove(at:firstIndexWord)
+            return wordString
         }
     }
     
@@ -60,12 +82,16 @@ class Game {
         var stillPlaying: Bool = true
         var shownWord: [String] = []
         
-        print("Olá! Sua palavra contém \(splitedWord.count) letras!")
+        print("")
+        print("Para ajudar a construir a casa do Drops, complete a palavra abaixo ⬇️.")
+        print("")
+        print("A palavra contém \(splitedWord.count) letras!")
         let draw = String(repeating: " _ ", count: splitedWord.count)
         print(draw)
+        print("")
         
         for _ in 0...splitedWord.count-1 {
-            shownWord.append("*")
+            shownWord.append(" _ ")
         }
         
         print("Escolha uma letra de A à Z:")
@@ -75,11 +101,13 @@ class Game {
             let letter = returnValidInput()
             
             if usedLetters.contains(letter){
-                print("essa letra ja foi usada")
-                print("Escolha uma letra de A à Z:")
+                print("")
+                print("Essa letra já foi usada")
+                print("Escolha outra letra de A à Z:")
+
             } else {
                 usedLetters.append(letter)
-                print(usedLetters)
+                let joined = usedLetters.joined(separator: ", ")
                 
                 if splitedWord.contains(letter) {
                     for i in 0...splitedWord.count-1 {
@@ -89,19 +117,33 @@ class Game {
                     }
                     
                     if shownWord == splitedWord {
-                        print("vitoria")
+                        print("")
+                        print("Você conseguiu, Drops está protegido ❤️")
+                        print("")
+                        menuInicial()
                         stillPlaying = false
+
+                        
                     } else {
-                        print("Atualmente:", shownWord)
-                        print("Você acertou uma letra!")
-                        print("Escolha uma letra de A à Z:")
+                        print("")
+                        print("Parabéns, você acertou uma letra! Escolha outra letra de A à Z:")
+                        print("Palavra:", shownWord.joined(separator: " "))
+                        print("")
+                        print("Letras já usadas: \(joined)")
+                        print("")
                     }
                     
-                } else {
-                    print("Você errou. Está letra não está dentro da palavra.")
-                    print("Atualmente:", shownWord)
-                    print("Escolha uma letra de A à Z:")
-                    errors += 1
+                    } else {
+                        print("Você errou. Escolha outra letra de A à Z:")
+                        print("Palavra:", shownWord.joined(separator: " "))
+                        print("")
+                        errors += 1
+                    }
+                
+                if errors == 5 {
+                    print("Você não conseguiu terminar, Drops ficou na chuva ☹️")
+                    menuInicial()
+                    exit(0)
                 }
             }
         }
