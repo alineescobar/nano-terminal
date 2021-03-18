@@ -46,7 +46,6 @@ class Game {
     
     func splitWord() -> [String]{
         let choosenWord = sortWord()
-        print("dentro do splitword: ", choosenWord)
         var wordSplited: [String] = []
         
         wordSplited = choosenWord.map { String($0) }
@@ -85,15 +84,18 @@ class Game {
                 }
                 
                 if shownWord == splitedWord {
+                    print("vitoria")
                     stillPlaying = false
-                }
-                
-                print("Atualmente:", shownWord)
-                
-                print("Você acertou")
+                } else {
+                    print("Atualmente:", shownWord)
+                    print("Você acertou")
+                    print("Escolha uma letra de A à Z:")
+                }                
                 
             } else {
                 print("Você errou. Está letra não está dentro da palavra.")
+                print("Atualmente:", shownWord)
+                print("Escolha uma letra de A à Z:")
                 errors += 1
             }
         }
