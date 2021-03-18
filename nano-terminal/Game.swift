@@ -30,6 +30,19 @@ class Game {
         return validInput
     }
     
+    func sortWord() -> String {
+        
+        if wordsOptions.isEmpty {
+            return ""
+            
+        }else {
+            var word = wordsOptions.randomElement()
+            var indexWord = wordsOptions.firstIndex(of: word!)
+            wordsOptions.remove(at: Int(indexWord!))
+            return word!
+        }
+    }
+    
     func splitWord() -> [String]{
         let choosenWord = wordsOptions[0]
         var wordSplited: [String] = []
@@ -48,7 +61,7 @@ class Game {
     
     func checkMatchLetters() {
         var usedLetters: [String] = []
-        let choosenWord = wordsOptions[0]
+        let choosenWord = sortWord()
         var errors: Int = 0
         
         print("Escolha uma letra de A à Z:")
