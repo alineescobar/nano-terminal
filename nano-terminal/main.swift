@@ -7,7 +7,7 @@
 
 import Foundation
 
-let palavra: String  = "casa"
+print("Insira o nome do jogador: ")
 
 if let input = readLine() {
     
@@ -16,6 +16,8 @@ if let input = readLine() {
     print("Olá, \(jogador01.name) o jogo vai começar!")
     
     let game = Game(player: jogador01, wordsOptions: ["casa", "fogao"])
+    
+    game.checkMatchLetters()
 }
 //-------------------------
 

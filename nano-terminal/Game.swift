@@ -24,18 +24,31 @@ class Game {
         return false
     }
     
-    func checkMatchLetters() -> Bool {
+    func splitWord() -> [String]{
+        let choosenWord = wordsOptions[0]
+        var wordSplited: [String] = []
+        
+        wordSplited = choosenWord.map { String($0) }
+        
+        return wordSplited
+    }
+    
+    func showInitialGame() -> String {
+        let splitedWord = splitWord()
+        print("Olá! Sua palavra contem \(splitedWord.count) letras!")
+        let draw = String(repeating: " _ ", count: splitedWord.count)
+        return draw
+    }
+    
+    func checkMatchLetters() {
         
         var usedLetters: [String] = []
-        var containsLetter: Bool = false
-                
-        print("Digite uma letra de A à Z:")
+        let choosenWord = wordsOptions[0]
+        var errors: Int = 0
+        
+        print("Escolha uma letra de A à Z:")
         
         if let letter = readLine() {
-            if validateInput(letter: letter) == false {
-                return false
-            }
-            
             usedLetters.append(letter)
             print("letras usadas:")
             
@@ -43,24 +56,36 @@ class Game {
                 print(letter)
             }
             
-            if wordsOptions[0].contains(letter) {
+            if choosenWord.contains(letter){
+                
+                let splitedWord = splitWord()
+                var palavraExibida: [String] = splitedWord
+            
+                for i in 0...splitedWord.count-1 {
+                    if splitedWord[i] == letter {
+                        palavraExibida[i] = letter
+                    } else {
+                        palavraExibida[i] = "*"
+                    }
+                }
+                
+                if palavraExibida.contains("*") {
+                    print("ainda falta adivinhar alguma letra")
+                }
+                else{
+                    print("voce venceu!!!")
+                }
+                
+                print("Atualmente:", palavraExibida)
+                
                 print("Você acertou")
-                containsLetter = true
                 
             }else {
                 print("Você errou. Está letra não está dentro da palavra.")
-                containsLetter = false
+                errors += 1
             }
+            print(errors)
         }
-        return containsLetter
     }
     
-    func gameGoOn() {
-        
-        var correct: Bool = false
-        
-        while !correct {
-            
-        }
-    }
 }
