@@ -15,8 +15,8 @@ if let input = readLine() {
         
     print("Olá, \(jogador.name) o jogo vai começar!")
     
-    let game = Game(player: jogador, wordsOptions: ["casa", "fogao"])
-    
+    let game = Game(player: jogador, wordsOptions: ["fogao", "geladeira", "banana", "casa"])
+
     game.playTheGame()
 }
 //-------------------------

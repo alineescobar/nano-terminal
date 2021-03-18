@@ -31,8 +31,22 @@ class Game {
         return validInput
     }
     
+    func sortWord() -> String {
+        
+        if wordsOptions.isEmpty {
+            return ""
+            
+        }else {
+            let word = wordsOptions.randomElement()
+            let indexWord = wordsOptions.firstIndex(of: word!)
+            wordsOptions.remove(at: Int(indexWord!))
+            return word ?? ""
+        }
+    }
+    
     func splitWord() -> [String]{
-        let choosenWord = wordsOptions[0]
+        let choosenWord = sortWord()
+        print("dentro do splitword: ", choosenWord)
         var wordSplited: [String] = []
         
         wordSplited = choosenWord.map { String($0) }
@@ -50,12 +64,16 @@ class Game {
     func playTheGame() {
         let _ = showInitialGame()
         var usedLetters: [String] = []
-        let choosenWord = wordsOptions[0]
+        let choosenWord = sortWord()
         var errors: Int = 0
         let splitedWord = splitWord()
         var palavraExibida: [String] = splitedWord
-        var teste: [String] = ["*", "*", "*", "*"]
         var stillPlaying: Bool = true
+        var teste: [String] = []
+        
+        for i in 0...splitedWord.count-1 {
+            teste.append("*")
+        }
         
         print("Escolha uma letra de A à Z:")
         
