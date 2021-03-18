@@ -54,15 +54,7 @@ class Game {
         return wordSplited
     }
     
-    func showInitialGame() {
-        let splitedWord = splitWord()
-        print("Olá! Sua palavra contém \(splitedWord.count) letras!")
-        let draw = String(repeating: " _ ", count: splitedWord.count)
-        print(draw)
-    }
-    
     func playTheGame() {
-        let _ = showInitialGame()
         var usedLetters: [String] = []
         let choosenWord = sortWord()
         var errors: Int = 0
@@ -70,6 +62,10 @@ class Game {
         var palavraExibida: [String] = splitedWord
         var stillPlaying: Bool = true
         var teste: [String] = []
+        
+        print("Olá! Sua palavra contém \(splitedWord.count) letras!")
+        let draw = String(repeating: " _ ", count: splitedWord.count)
+        print(draw)
         
         for i in 0...splitedWord.count-1 {
             teste.append("*")
