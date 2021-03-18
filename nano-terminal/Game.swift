@@ -43,7 +43,7 @@ class Game {
             if letter.count == 1 && letter >= "a" && letter <= "z" {
                 validInput = letter
             } else {
-                print("Entrada inválida!")
+                print("Caracter inválido!")
             }
         }
         return validInput
