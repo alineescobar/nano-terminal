@@ -41,13 +41,12 @@ class Game {
     
     func showInitialGame() -> String {
         let splitedWord = splitWord()
-        print("Olá! Sua palavra contem \(splitedWord.count) letras!")
+        print("Olá! Sua palavra contém \(splitedWord.count) letras!")
         let draw = String(repeating: " _ ", count: splitedWord.count)
         return draw
     }
     
     func checkMatchLetters() {
-        
         var usedLetters: [String] = []
         let choosenWord = wordsOptions[0]
         var errors: Int = 0
