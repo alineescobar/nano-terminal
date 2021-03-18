@@ -16,9 +16,6 @@ if let input = readLine() {
     print("Olá, \(jogador01.name) o jogo vai começar!")
     
     let game = Game(player: jogador01, wordsOptions: ["casa", "fogao"])
-    
-    //game.validateInput()
-    game.checkMatchLetters()
 }
 //-------------------------
 

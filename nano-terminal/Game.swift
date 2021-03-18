@@ -44,14 +44,12 @@ class Game {
             }
             
             if wordsOptions[0].contains(letter) {
-
                 print("Você acertou")
                 containsLetter = true
                 
             }else {
                 print("Você errou. Está letra não está dentro da palavra.")
                 containsLetter = false
-                
             }
         }
         return containsLetter
