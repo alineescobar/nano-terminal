@@ -56,7 +56,10 @@ class Game {
             } else {
                 if letter.count == 1 && letter >= "a" && letter <= "z" {
                     validInput = letter
-                } else {
+                } else if letter == "dica"{
+                    validInput = "!"
+                }
+                else {
                     validInput = "*"
                     print("Caracter inválido!")
                 }
@@ -138,6 +141,9 @@ class Game {
             } else if input.validInput == "*"{
                 print("")
                 print("Você está tentando usar um caractere inválido!")
+
+            } else if input.validInput == "!" {
+                print("Você já usou sua dica!")
             }
             else {
                 usedLetters.append(letter)
