@@ -51,9 +51,13 @@ class Game {
                 } else {
                     print("Caracter inválido!")
                 }
+            } else {
+                if letter.count == 1 && letter >= "a" && letter <= "z" {
+                    validInput = letter
+                } else {
+                    print("Caracter inválido!")
+                }
             }
-            
-
         }
         return (validInput, wantTip)
     }
@@ -109,18 +113,19 @@ class Game {
         print("Escolha uma letra de A à Z:")
         
         while errors < 5 && stillPlaying {
-            print(errors)
+            print("erros: ", errors)
 
             let input = returnValidInput()
             
-            if input.wantTip && !player.hasUsedTip{
+            if input.wantTip && !player.hasUsedTip {
                 remainingLetters = Array(Set(splitedWord).subtracting(shownWord))
                 letter = remainingLetters.randomElement() ?? ""
+                player.hasUsedTip = true
     
-            } else {
+            }
+            else {
                 letter = input.validInput
             }
-            
             
             if usedLetters.contains(letter){
                 print("")
