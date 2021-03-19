@@ -105,13 +105,13 @@ class Game {
         var remainingLetters: [String] = []
         
         print("")
-        print("Antes de começarmos: você tem direito a uma dica! Para usa-la, escreva dica ao pedir uma letra!")
         print("Para ajudar a construir a casa do Drops, complete a palavra abaixo ⬇️.")
         print("")
         print("A palavra contém \(splitedWord.count) letras!")
         let draw = String(repeating: " _ ", count: splitedWord.count)
         print(draw)
         print("")
+        print("Você pode usar a uma dica. Para usa-lá, escreva 'dica' quando quiser.")
         
         for _ in 0...splitedWord.count-1 {
             shownWord.append(" _ ")
@@ -120,8 +120,6 @@ class Game {
         print("Escolha uma letra de A à Z:")
         
         while errors < 5 && stillPlaying {
-            print("erros: ", errors)
-
             let input = returnValidInput()
             
             if input.wantTip && !player.hasUsedTip {
@@ -136,14 +134,18 @@ class Game {
             if usedLetters.contains(letter) && !(input.validInput == "*") {
                 print("")
                 print("Essa letra já foi usada")
+                print("Você pode usar a uma dica. Para usa-lá, escreva 'dica' quando quiser.")
                 print("Escolha outra letra de A à Z:")
 
             } else if input.validInput == "*"{
                 print("")
                 print("Você está tentando usar um caractere inválido!")
+                print("Você pode usar a uma dica. Para usa-lá, escreva 'dica' quando quiser.")
 
             } else if input.validInput == "!" {
                 print("Você já usou sua dica!")
+                print("Escolha uma letra de A à Z:")
+
             }
             else {
                 usedLetters.append(letter)
@@ -174,6 +176,8 @@ class Game {
                     
                 } else {
                         print("Você errou. Escolha outra letra de A à Z:")
+                        print("Você pode usar a uma dica. Para usa-lá, escreva 'dica' quando quiser.")
+                        print("")
                         print("Palavra:", shownWord.joined(separator: " "))
                         print("")
                         errors += 1
