@@ -37,6 +37,7 @@ class Game {
     func returnValidInput() -> (validInput: String, wantTip:Bool){
         var validInput: String = ""
         var wantTip: Bool = false
+        
         if let input = readLine() {
             
             let letter = input.lowercased()
@@ -49,16 +50,19 @@ class Game {
                 else if letter.count == 1 && letter >= "a" && letter <= "z" {
                     validInput = letter
                 } else {
+                    validInput = "*"
                     print("Caracter inválido!")
                 }
             } else {
                 if letter.count == 1 && letter >= "a" && letter <= "z" {
                     validInput = letter
                 } else {
+                    validInput = "*"
                     print("Caracter inválido!")
                 }
             }
         }
+
         return (validInput, wantTip)
     }
     
@@ -121,18 +125,21 @@ class Game {
                 remainingLetters = Array(Set(splitedWord).subtracting(shownWord))
                 letter = remainingLetters.randomElement() ?? ""
                 player.hasUsedTip = true
-    
             }
             else {
                 letter = input.validInput
             }
             
-            if usedLetters.contains(letter){
+            if usedLetters.contains(letter) && !(input.validInput == "*") {
                 print("")
                 print("Essa letra já foi usada")
                 print("Escolha outra letra de A à Z:")
 
-            } else {
+            } else if input.validInput == "*"{
+                print("")
+                print("Você está tentando usar um caractere inválido!")
+            }
+            else {
                 usedLetters.append(letter)
                 let joined = usedLetters.joined(separator: ", ")
                 
@@ -149,7 +156,6 @@ class Game {
                         print("")
                         menuInicial()
                         stillPlaying = false
-
                         
                     } else {
                         print("")
