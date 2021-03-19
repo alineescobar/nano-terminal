@@ -53,7 +53,7 @@ class Game {
                 }
             }
             
-            
+
         }
         return (validInput, wantTip)
     }
@@ -69,7 +69,7 @@ class Game {
             
             let indexWord = wordsOptions.firstIndex(of: wordString)
             guard let firstIndexWord = indexWord else { return "" }
-            
+
             wordsOptions.remove(at:firstIndexWord)
             return wordString
         }
@@ -110,14 +110,13 @@ class Game {
         
         while errors < 5 && stillPlaying {
             print(errors)
-            
+
             let input = returnValidInput()
             
-            if input.wantTip {
+            if input.wantTip && !player.hasUsedTip{
                 remainingLetters = Array(Set(splitedWord).subtracting(shownWord))
                 letter = remainingLetters.randomElement() ?? ""
-                player.hasUsedTip = true
-                
+    
             } else {
                 letter = input.validInput
             }
@@ -127,7 +126,7 @@ class Game {
                 print("")
                 print("Essa letra já foi usada")
                 print("Escolha outra letra de A à Z:")
-                
+
             } else {
                 usedLetters.append(letter)
                 let joined = usedLetters.joined(separator: ", ")
@@ -145,7 +144,7 @@ class Game {
                         print("")
                         menuInicial()
                         stillPlaying = false
-                        
+
                         
                     } else {
                         print("")
@@ -157,15 +156,11 @@ class Game {
                     }
                     
                 } else {
-                    print("Você errou. Escolha outra letra de A à Z:")
-                    print("Palavra:", shownWord.joined(separator: " "))
-                    print("")
-                    if player.hasUsedTip {
-                        errors += 0
-                    } else {
+                        print("Você errou. Escolha outra letra de A à Z:")
+                        print("Palavra:", shownWord.joined(separator: " "))
+                        print("")
                         errors += 1
                     }
-                }
                 
                 if errors == 5 {
                     print("Você não conseguiu terminar, Drops ficou na chuva ☹️")
