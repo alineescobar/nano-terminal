@@ -66,17 +66,9 @@
 				166B66A426012ECD007359B1 /* main.swift */,
 				167FC1B4260148D5000B73FD /* Player.swift */,
 				167FC1B726014A86000B73FD /* Game.swift */,
-				9FCB847B2602D22A00B2304C /* Prints */,
-			);
-			path = "nano-terminal";
-			sourceTree = "<group>";
-		};
-		9FCB847B2602D22A00B2304C /* Prints */ = {
-			isa = PBXGroup;
-			children = (
 				9FCB847C2602D24A00B2304C /* Prints.swift */,
 			);
-			path = Prints;
+			path = "nano-terminal";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

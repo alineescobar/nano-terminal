@@ -17,15 +17,15 @@ class Game {
     }
     
     func menuInicial() {
-        print("1: Novo Jogo")
-        print("0: Sair do Jogo")
+        print(" 1: Novo Jogo")
+        print(" 0: Sair do Jogo")
         
         if let option = readLine() {
             if option == "1"{
                 playTheGame()
                 
             } else if option == "0" {
-                print("Até a próxima!😉")
+                print(" Até a próxima!😉")
                 exit(0)
                 
             }else {
@@ -36,37 +36,41 @@ class Game {
     
     func returnValidInput() -> (validInput: String, wantTip:Bool){
         var validInput: String = ""
-        var wantTip: Bool = false
+        var wantHelp: Bool = false
         
         if let input = readLine() {
             
             let letter = input.lowercased()
             
-            if !player.hasUsedTip {
-                if letter == "dica" {
-                    print("Você pediu uma dica!")
-                    wantTip = true
+            if !player.hasUsedHelp {
+                if letter == "ajuda" {
+                    print(" Foi aqui que pediram uma ajuda? Incluímos uma letra pra você!")
+                    wantHelp = true
                 }
+                
                 else if letter.count == 1 && letter >= "a" && letter <= "z" {
                     validInput = letter
+                    
                 } else {
                     validInput = "*"
-                    print("Caracter inválido!")
+                    print("")
                 }
+                
             } else {
+                
                 if letter.count == 1 && letter >= "a" && letter <= "z" {
                     validInput = letter
-                } else if letter == "dica"{
+                    
+                } else if letter == "ajuda"{
                     validInput = "!"
                 }
                 else {
                     validInput = "*"
-                    print("Caracter inválido!")
+                    print("")
                 }
             }
         }
-
-        return (validInput, wantTip)
+        return (validInput, wantHelp)
     }
     
     func sortWord() -> String {
@@ -103,29 +107,49 @@ class Game {
         var shownWord: [String] = []
         var letter: String = ""
         var remainingLetters: [String] = []
+        player.hasUsedHelp = false
         
         print("")
-        print("Para ajudar a construir a casa do Drops, complete a palavra abaixo ⬇️.")
+        print("                     Drops é um vira-lata.")
         print("")
-        print("A palavra contém \(splitedWord.count) letras!")
+        print("             Ele está precisando de uma casinha...")
+        print("")
+        print("                      ┈╭━━━━━━━━━━━━━╮┈ ")
+        print("                     ╭╯ ┈╭━━╮ ┈ ╭━━╮┈ ╰╮ ")
+        print("                     ┃ ┈┃┃╭╮┃ ┈ ┃╭╮┃┃┈ ┃ ")
+        print("                     ┃ ┈┃┻┻┻┛ ┈ ┗┻┻┻┃┈ ┃ ")
+        print("                     ┃ ┈┃╭╮┈ ◢▇◣ ┈╭╮┃┈ ┃ ")
+        print("                     ╰┳╯ ┃ ╰━━┳┳┳╯ ┃ ╰┳╯ ")
+        print("                     ┈┃ ┈╰━━━━┫┃┣━━╯┈ ┃┈ ")
+        print("                     ┈┃ ┈┈┈ ┈┈╰━╯ ┈┈┈ ┃┈")
+        print("")
+        print("             Ajude a construir a nova casa dele...")
+        print("")
+        print("                 Antes que comece a chover!")
+        print("")
+        print(" Para ajudar o Drops, complete corretamente a palavra abaixo ⬇️")
+        print("")
+        print(" A palavra contém \(splitedWord.count) letras!")
         let draw = String(repeating: " _ ", count: splitedWord.count)
         print(draw)
         print("")
-        print("Você pode usar a uma dica. Para usa-lá, escreva 'dica' quando quiser.")
+        print(" Você pode usar uma dica. Para usá-la, escreva 'ajuda' quando quiser.")
+        print("")
         
         for _ in 0...splitedWord.count-1 {
             shownWord.append(" _ ")
         }
         
-        print("Escolha uma letra de A à Z:")
+        print(" Digite uma letra de A à Z:")
         
         while errors < 5 && stillPlaying {
+            print("")
             let input = returnValidInput()
             
-            if input.wantTip && !player.hasUsedTip {
+            if input.wantTip && !player.hasUsedHelp {
                 remainingLetters = Array(Set(splitedWord).subtracting(shownWord))
                 letter = remainingLetters.randomElement() ?? ""
-                player.hasUsedTip = true
+                player.hasUsedHelp = true
             }
             else {
                 letter = input.validInput
@@ -133,18 +157,25 @@ class Game {
             
             if usedLetters.contains(letter) && !(input.validInput == "*") {
                 print("")
-                print("Essa letra já foi usada")
-                print("Você pode usar a uma dica. Para usa-lá, escreva 'dica' quando quiser.")
-                print("Escolha outra letra de A à Z:")
+                print("     Essa letra já foi usada.")
+                print("")
+                print(" Palavra:", shownWord.joined(separator: " "))
+                print("")
+                print(" Digite outra letra de A à Z:")
 
             } else if input.validInput == "*"{
                 print("")
-                print("Você está tentando usar um caractere inválido!")
-                print("Você pode usar a uma dica. Para usa-lá, escreva 'dica' quando quiser.")
+                print(" Você está tentando usar um caractere inválido!")
+                print("")
+                print(" Digite outra letra de A à Z:")
 
             } else if input.validInput == "!" {
-                print("Você já usou sua dica!")
-                print("Escolha uma letra de A à Z:")
+                print("")
+                print("     Você já usou a ajuda!")
+                print("")
+                print(" Palavra:", shownWord.joined(separator: " "))
+                print("")
+                print(" Digite uma letra de A à Z:")
 
             }
             else {
@@ -160,31 +191,59 @@ class Game {
                     
                     if shownWord == splitedWord {
                         print("")
-                        print("Você conseguiu, Drops está protegido ❤️")
+                        print("             Você conseguiu!!")
+                        print("     Drops está protegido na nova casinha!")
+                        print("")
+                        print("                 //-------\\\\")
+                        print("                //-_-_-_-_-\\\\")
+                        print("               //_-_-_-_-_-_\\\\")
+                        print("              //_-_-_-_-_-_-_\\\\")
+                        print("             //---------------\\\\")
+                        print("              |     DROPS     |")
+                        print("              |   _________   |")
+                        print("              |   ||     ||   |")
+                        print("              |   ||     ||   |")
+                        print("              |   ||     ||   |")
+                        print("           ------------------------")
                         print("")
                         menuInicial()
                         stillPlaying = false
                         
                     } else {
                         print("")
-                        print("Parabéns, você acertou uma letra! Escolha outra letra de A à Z:")
-                        print("Palavra:", shownWord.joined(separator: " "))
+                        print("     Oba, você acertou uma letra 🥳!")
                         print("")
-                        print("Letras já usadas: \(joined)")
+                        print(" Palavra:", shownWord.joined(separator: " "))
                         print("")
+                        print(" Letras já usadas: \(joined)")
+                        print(" Digite outra letra de A à Z:")
                     }
                     
                 } else {
-                        print("Você errou. Escolha outra letra de A à Z:")
-                        print("Você pode usar a uma dica. Para usa-lá, escreva 'dica' quando quiser.")
                         print("")
-                        print("Palavra:", shownWord.joined(separator: " "))
+                        print("     Ah, você errou ☹️")
                         print("")
+                        print(" Palavra:", shownWord.joined(separator: " "))
+                        print("")
+                    
                         errors += 1
+                    
+                        if errors != 5 {
+                            
+                            print(" Letras já usadas: \(joined)")
+                            print(" Digite uma letra de A à Z:")
+                        }
                     }
                 
                 if errors == 5 {
-                    print("Você não conseguiu terminar, Drops ficou na chuva ☹️")
+                    print("")
+                    print("         ☁️☁️☁️☁️☁️☁️☁️☁️☁️☁️☁️☁️☁️☁️☁️☁️")
+                    print("         💧💧💧💧⚡️💧💧💧💧💧💧💧💧⚡️💧💧")
+                    print("         💧💧DROPS FICOU NA CHUVA 🤧💧💧")
+                    print("         💧💧💧💧💧💧💧💧💧💧💧💧💧💧💧💧")
+                    print("         💧💧⚡️💧💧💧💧💧💧💧💧⚡️💧💧💧💧")
+                    print("")
+                    
                     menuInicial()
                     exit(0)
                 }

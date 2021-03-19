@@ -9,7 +9,7 @@ import Cocoa
 
 class Player {
     var name: String
-    var hasUsedTip: Bool = false
+    var hasUsedHelp: Bool = false
     
     init(name: String) {
         self.name = name
