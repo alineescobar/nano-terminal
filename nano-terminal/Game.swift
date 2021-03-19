@@ -44,6 +44,7 @@ class Game {
             
             if !player.hasUsedHelp {
                 if letter == "ajuda" {
+                    print("")
                     print(" Foi aqui que pediram uma ajuda? Incluímos uma letra pra você!")
                     wantHelp = true
                 }
@@ -133,7 +134,7 @@ class Game {
         let draw = String(repeating: " _ ", count: splitedWord.count)
         print(draw)
         print("")
-        print(" Você pode usar uma dica. Para usá-la, escreva 'ajuda' quando quiser.")
+        print(" Você pode usar uma ajuda. Para usá-la, escreva 'ajuda' quando quiser.")
         print("")
         
         for _ in 0...splitedWord.count-1 {
@@ -211,7 +212,7 @@ class Game {
                         
                     } else {
                         print("")
-                        print("     Oba, você acertou uma letra 🥳!")
+                        print(" Oba, você acertou uma letra 🥳!")
                         print("")
                         print(" Palavra:", shownWord.joined(separator: " "))
                         print("")
