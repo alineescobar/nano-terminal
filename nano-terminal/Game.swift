@@ -128,6 +128,8 @@ class Game {
         print("")
         print("                 Antes que comece a chover!")
         print("")
+        print("               Você tem 05 chances de errar!")
+        print("")
         print(" Para ajudar o Drops, complete corretamente a palavra abaixo ⬇️")
         print("")
         print(" A palavra contém \(splitedWord.count) letras!")
@@ -167,6 +169,8 @@ class Game {
             } else if input.validInput == "*"{
                 print("")
                 print(" Você está tentando usar um caractere inválido!")
+                print("")
+                print(" Palavra:", shownWord.joined(separator: " "))
                 print("")
                 print(" Digite outra letra de A à Z:")
 
@@ -228,9 +232,17 @@ class Game {
                         print("")
                     
                         errors += 1
+                    var textoDeErros: String = ""
+                    
+                    if errors == 4 {
+                        textoDeErros = "chance"
+                    } else {
+                        textoDeErros = "chances"
+                    }
                     
                         if errors != 5 {
-                            
+                            print("")
+                            print(" Você ainda tem \(5-errors) \(textoDeErros).")
                             print(" Letras já usadas: \(joined)")
                             print(" Digite uma letra de A à Z:")
                         }
